@@ -6,13 +6,13 @@ import VideoPlayer from "./components/VideoPlayer";
 import { TextInput, Button } from "flowbite-react"; // Importing both TextInput and Button
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [fieldValue, setFieldValue] = useState(null);
-  const [videoId, setVideoId] = useState(53);
+  // const [videoId, setVideoId] = useState(302);
 
-  function playVideo(videoId) {
-    setVideoId(videoId);
-  }
+  // function playVideo(videoId) {
+  //   setVideoId(videoId);
+  // }
 
   return (
     <>
@@ -27,9 +27,13 @@ function App() {
             <h1 className="text-white text-center mt-2">Playing Video</h1>
 
             <div>
-              <VideoPlayer
+              {/* <VideoPlayer
                 src={`http://localhost:3030/api/v1/videos/${videoId}/master.m3u8`}
-              ></VideoPlayer>
+              >
+              </VideoPlayer> */}
+              <VideoPlayer  
+                src={`http://localhost:3030/api/v1/videos/302/master.m3u8`}
+              />
             </div>
           </div>
 
@@ -48,9 +52,9 @@ function App() {
           />
           <Button
             onClick={() => {
-              if (fieldValue.trim() !== "") {
-                setVideoId(Number(fieldValue)); // Convert input to a number
-              }
+              // if (fieldValue.trim() !== "") {
+              //   setVideoId(Number(fieldValue)); // Convert input to a number
+              // }
             }}
           >
             Play

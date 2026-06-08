@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
+
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/video")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("${app.cors.allowed-origins}")
 
 public class VideoController {
     @Autowired
@@ -57,7 +57,7 @@ public class VideoController {
     }
    @GetMapping("/stream/{Id}")
     public ResponseEntity<Resource>stream(
-            @RequestBody int Id
+            @PathVariable int Id
     ){
        Video video= videoServiceImpl.get(Id);
        String contentType = video.getContentType();
@@ -72,7 +72,7 @@ public class VideoController {
 
     @GetMapping("/stream/range/{Id}")
     public ResponseEntity<Resource>streamVideoRange(
-            @RequestBody int Id,
+            @PathVariable int Id,
             @RequestHeader(value = "Range",required = false)String range
 
     ){
@@ -119,7 +119,7 @@ public class VideoController {
 
 
             HttpHeaders headers =new HttpHeaders();
-            headers.add("Contant-Range","bytes "+rangeStart+"-"+rangeEnd+"/"+fileLength);
+            headers.add("Content-Range","bytes "+rangeStart+"-"+rangeEnd+"/"+fileLength);
             headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
             headers.add("Pragma", "no-cache");
             headers.add("Expires", "0");
