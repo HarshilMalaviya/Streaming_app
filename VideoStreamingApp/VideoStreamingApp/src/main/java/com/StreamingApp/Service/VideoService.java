@@ -8,9 +8,7 @@ import java.util.List;
 public interface VideoService {
 
     //save  video
-    static Video save(Video video, MultipartFile file) {
-        return null;
-    }
+    Video save(Video video, MultipartFile file);
 
 
 

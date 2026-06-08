@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Uploaded videos and HLS output ###
+videos/
+videos_hls/
